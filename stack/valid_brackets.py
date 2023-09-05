@@ -3,11 +3,11 @@ def is_valid(str):
     for i in range(len(str)):
         ch=str[i]
         
-        if ch=="(" or ch=="{" or ch=="[":
+        if ch=="(" or ch=="{" or ch=="[": #if opening bracket stack push 
             stack.append(ch)
         
         else:
-            #closing brackets
+            #closing brackets check top and then pop  
             if len(stack)>0 :
                 top=stack[-1]
                 
@@ -16,7 +16,7 @@ def is_valid(str):
                 else:
                     return False
                 
-            else:
+            else: #if only closing brackets are present and no corresponding open bracket is present 
                 return False
     
     if len(stack)==0:
