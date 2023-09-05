@@ -6,7 +6,7 @@ def find_redundant_brackets(expression):
         elif ch == ")":
             is_redundant = True
             while len(st) > 0 and st[-1] != "(":
-                if st[-s1] == "+" or st[-1] == "-" or st[-1] == "*" or st[-1] == "/":
+                if st[-1] == "+" or st[-1] == "-" or st[-1] == "*" or st[-1] == "/":
                     is_redundant = False
                 st.pop()
             if len(st) == 0:
