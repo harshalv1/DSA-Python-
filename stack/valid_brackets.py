@@ -1,30 +1,37 @@
-def areBracketsMatching(expression):
-    stack = []  # Initialize the stack inside the function
-    for ch in expression: #iterate over the expression
-        if ch == "{" or ch == "[" or ch == "(": #if we find opening bracket 
-            stack.append(ch) #append that character of the expression in the stack 
-        else:
-            if len(stack) != 0: #we have to ensure that we haven't exhaused the stack 
-                if (ch == "}" and stack[-1] == "{") or (ch == "]" and stack[-1] == "[") or (ch == ")" and stack[-1] == "("):
-                    stack.pop() # if we find closing brackets which are corresponding to the opening brackets 
-                    # we start to pop the elements
-                else:
-                    return False #only closing found therefore no match
-            else:  
-                return False #closing bracket is encountered, but there is no corresponding opening bracket in the stack
+def is_valid(str):
+    stack=[] 
+    for i in range(len(str)):
+        ch=str[i]
         
-    if len(stack) == 0: #if the stack is exhaused that means we found a valid bracket /matching bracket 
+        if ch=="(" or ch=="{" or ch=="[":
+            stack.append(ch)
+        
+        else:
+            #closing brackets
+            if len(stack)>0 :
+                top=stack[-1]
+                
+                if (ch==")" and top=="(" ) or (ch=="}" and top=="{") or (ch=="]" and top=="["):
+                    stack.pop()
+                else:
+                    return False
+                
+            else:
+                return False
+    
+    if len(stack)==0:
         return True
     else:
-        return False #stack is not exhausted that means we have not found a valid br
+        return False
+                
 
-# Test cases
-expression1 = "{[()]}"
-expression2 = "{[(])}"
-expression3 = "{[}"
-expression4 = "}"
 
-print(areBracketsMatching(expression1))  # True
-print(areBracketsMatching(expression2))  # False
-print(areBracketsMatching(expression3))  # False
-print(areBracketsMatching(expression4))  # False
+print(is_valid("{[]}"))  # Expected output: True (Valid)
+print(is_valid(""))  # Expected output: True (Valid, an empty string is also considered valid)
+print(is_valid("[[[[[[{}]]]]]]"))  # Expected output: True (Valid)
+print(is_valid("({[})"))  # Expected output: False (Invalid)            
+print(is_valid("()"))  # Expected output: True (Valid)
+print(is_valid("()[]{}"))  # Expected output: True (Valid)
+print(is_valid("(]"))  # Expected output: False (Invalid)
+print(is_valid("([)]"))  # Expected output: False (Invalid)
+
