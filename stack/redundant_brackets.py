@@ -33,3 +33,5 @@ print(is_redundant(str2))
 print(is_redundant(str3))
 print(is_redundant(str4))
 
+#space complexity is o(n)
+#time complexity is o(n)
