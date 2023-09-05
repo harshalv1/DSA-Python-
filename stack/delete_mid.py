@@ -49,24 +49,25 @@ delete_mid(stack, stack.size())
 print("Stack after deleting middle element:", stack.items)
 #--------------------------------------------------------------------------------
 #same solution but without creating a class stack
-def solve(inputStack,count,N):
-    if count==len(inputStack)//2:
-        inputStack.pop()
-        return 
+def solve(stack,count,size):
+    if count==len(stack)//2:
+        stack.pop()
+        return
     
-    num=inputStack.pop()
-    solve(inputStack,count+1,N)
-    inputStack.append(num)
+    num=stack.pop()
+    solve(stack,count+1,size)
+    stack.append(num)
 
-def deleteMiddle(inputStack, N):
+
+def del_mid(stack,size):
+    
     count=0
-    
-    solve(inputStack,count,N)
-    
-inputStack=[]
-inputStack.append(1)
-inputStack.append(2)
-inputStack.append(3)
-print(inputStack)
-deleteMiddle(inputStack,3)
-print(inputStack)
+    solve(stack,count,size)
+
+Stack=[]
+Stack.append(1)
+Stack.append(2)
+Stack.append(3)
+print(Stack)
+del_mid(Stack,3)
+print(Stack)
