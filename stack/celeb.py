@@ -1,50 +1,60 @@
-
-def knows(M,a,b,n):
-    if M[a][b]==1:
+# Function to check if person 'a' knows person 'b' based on the matrix M.
+def knows(M, a, b):
+    if M[a][b] == 1:
         return True
     else:
         return False
-        
-def find_celeb(M,n):
-    
-    stack=[]
-    
+
+# Function to find the celebrity in the party using a stack-based approach.
+def find_celeb(M, n):
+    stack = []
+
+    # Step 1: Initialize the stack with all people (indices).
     for i in range(n):
         stack.append(i)
-        
-    while len(stack)!=1:
-        a=stack.pop()
-        b=stack.pop()
-    
-    if knows(M,a,b,n):
-        stack.append(b)
-        
-    else:
-        stack.append(a)
-        
-        
-    ans=stack.pop() #found the celeb now lets verify
-    
-    zero_count=0
-    
+
+    # Step 2: Compare pairs of people until only one potential celebrity remains.
+    while len(stack) != 1:
+        a = stack.pop()
+        b = stack.pop()
+
+        # If 'a' knows 'b', 'a' cannot be the celebrity, so push 'b' back onto the stack.
+        if knows(M, a, b):
+            stack.append(b)
+        # Otherwise, push 'a' back onto the stack.
+        else:
+            stack.append(a)
+
+    # The last person remaining in the stack is the potential celebrity.
+    ans = stack.pop()
+
+    # Step 3: Verify if the potential celebrity meets the criteria.
+    zero_count = 0
+
+    # Count the number of zeros in the row of the potential celebrity.
     for i in range(n):
-        if M[ans][i]==0:
-            zero_count=zero_count+1
-    
-    if zero_count!=n:
+        if M[ans][i] == 0:
+            zero_count += 1
+
+    # If there are any non-zero values in the row, it's not a celebrity.
+    if zero_count != n:
         return -1 
-    
-    one_count=0
-    
+
+    one_count = 0
+
+    # Count the number of ones in the column of the potential celebrity.
     for i in range(n):
-        if M[i][ans]==1:
-            one_count=one_count+1
-            
-    if one_count!=n-1:
+        if M[i][ans] == 1:
+            one_count += 1
+
+    # A celebrity should have n-1 ones in their column.
+    if one_count != n - 1:
         return -1
-        
+
+    # Return the index of the potential celebrity.
     return ans
-        
+
+# Main function to test the code with a sample matrix M and n.
 if __name__ == "__main__":
     M = [
         [0, 1, 1],
@@ -58,5 +68,3 @@ if __name__ == "__main__":
         print("The celebrity is person", result)
     else:
         print("There is no celebrity at the party.")
-    
-    
