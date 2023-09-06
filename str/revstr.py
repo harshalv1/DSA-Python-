@@ -13,5 +13,5 @@ reversed_word=reverse(word)
 print(reversed_word)
         
 
-
+#space and time complexity is o(n)
         
