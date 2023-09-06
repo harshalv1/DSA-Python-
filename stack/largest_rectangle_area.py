@@ -30,7 +30,7 @@ def prev_smallest_element(arr, n):
 
     return ans
 
-# Function to find the largest rectangular area in a histogram
+# Optimised approach time complexity is o(n) the function finds the largest rectangular area in a histogram
 def largest_area(heights):
     n = len(heights)
 
