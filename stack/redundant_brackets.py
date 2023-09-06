@@ -18,7 +18,6 @@ def is_redundant(str):
                 
                 if is_redundant==True:
                     return True
-                
 
     return False
                 
