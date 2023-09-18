@@ -23,3 +23,5 @@ print(is_valid("()[]{}"))  # Expected output: True (Valid)
 print(is_valid("(]"))  # Expected output: False (Invalid)
 print(is_valid("([)]"))  # Expected output: False (Invalid)
 
+#T.C=o(N) coz of the for loop
+#S.C=o(N)coz in the worst case the str could have only opening brackets
