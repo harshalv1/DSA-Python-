@@ -18,12 +18,45 @@ def build_tree():
     root.left=build_tree() #build left subtree using recurstion 
 
     print("Dat at right of",data)
-    root.rigt=build_tree() #build right subtree using recursion 
+    root.right=build_tree() #build right subtree using recursion 
 
     return root #return root 
 
 root=build_tree() #function call 
 
+def count(root):
+    if root==None:
+        return 0
+
+    else:
+        return 1+count(root.left)+count(root.right)
+    
+def inorder (root): #depth first search types inorder preorder and postorder 
+    if root:
+        inorder(root.left)
+        print(root.data)
+        inorder(root.right)
+    
+def preorder(root):
+    if root:
+        print(root.data)
+        preorder(root.left)
+        preorder(root.right)
+
+def postorder(root):
+    if root:
+        postorder(root.left)
+        postorder(root.right)
+        print(root.data)
+        
+
+
+
+# no_of_nodes=count(root)
+# print(no_of_nodes)
+#inorder(root)
+#preorder(root)
+postorder(root)
 
     
 
