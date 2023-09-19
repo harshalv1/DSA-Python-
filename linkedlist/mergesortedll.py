@@ -1,47 +1,30 @@
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.next = None
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
 
-def solve(first, second):
-    # If the first list is empty, connect it to the second list and return
-    if first.next == None:
-        first.next = second
-        return first
-        
-    curr1 = first
-    next1 = first.next
-    curr2 = second
-    next2 = second.next
-    
-    # Merge the two lists while maintaining order
-    while curr1 != None and curr2 != None:
-        if curr2.data >= curr1.data and curr2.data <= next1.data:
-            curr1.next = curr2
-            next2 = curr2.next
-            curr2.next = next1
-            
-            curr1 = next1
-            curr2 = next2
-        else:
-            curr1 = next1
-            next1 = next1.next
-        
-            if next1 == None:
-                curr1.next = curr2
-                break
-    
-    return first
+        dum=ListNode()
+        tail=dum
 
-def merge_sorted_ll(first, second):
-    if first == None:
-        return second
+        while list1 and list2:
+            if list1.val<list2.val:
+                tail.next=list1
+                list1=list1.next
+            else:
+                tail.next=list2
+                list2=list2.next
+            tail=tail.next
         
-    elif second == None:
-        return first
-    
-    # Determine the order of the two lists and call the merge function accordingly
-    if first.data < second.data:
-        return solve(first, second)
-    elif second.data < first.data:
-        return solve(second, first)
+        if list1 is None:
+            tail.next=list2
+        elif list2 is None:
+            tail.next=list1
+        
+        return dum.next
+
+#t.c is o(n) we only iterate through both the lists once 
+#s.c is o(1) dummy node doesn't take any space with respect to the size of the input 
+#lists
