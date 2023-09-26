@@ -37,6 +37,20 @@ def print_tree(root):
         print_tree(root.left)
         print(root.data)
         print_tree(root.right)
-    
+
+def get_min(root):
+    if root is None:
+        return None
+    curr=root
+    while root.left!=None:
+        root=root.left
+
+    return root.data
+
+  
 bst_root=input_dta()
 print_tree(bst_root)
+
+mini=get_min(bst_root)
+print("The minimum element in the bst is",mini)
+
