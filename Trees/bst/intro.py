@@ -47,10 +47,20 @@ def get_min(root):
 
     return root.data
 
-  
+def get_max(root):
+    if root is None:
+        return None
+    curr=root
+    while root.right!=None:
+        root=root.right
+
+    return root.data
+
 bst_root=input_dta()
 print_tree(bst_root)
 
 mini=get_min(bst_root)
+maxim=get_max(bst_root)
 print("The minimum element in the bst is",mini)
+print("The maximum element in the bst is",maxim)
 
