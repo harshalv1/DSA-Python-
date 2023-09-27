@@ -47,11 +47,7 @@ def level_order(root):
                 q.append(node.left)
                 q.append(node.right)
         if levels:
-            print(levels)
-    
-    
-
-                
+            print(levels)               
 
 def inorder(root):
     if root is None:
@@ -79,9 +75,46 @@ def get_max(root):
 
     return root.data
 
+
+
+def del_from_bst(root,key):
+    if root is None:
+        return None
+    
+
+    if root.data<key:
+        root.right=del_from_bst(root.right,key)
+    elif root.data>key:
+        root.left=del_from_bst(root.left,key)
+    
+    else:
+        #no child 
+        if root.left is None and root.right is None:
+            return None
+        
+
+        #one child
+
+        if root.right!=None and root.left==None: #right child present left not 
+            temp=root.right
+            return temp
+
+        elif root.right == None and root.left != None:
+            temp=root.left
+            return temp
+        
+        #two child 
+
+        mini=get_min(root.right)
+        root.data=mini
+        root.right=del_from_bst(root.right,mini)
+        return root
+
+    return root 
+
 bst_root=input_dta()
 level_order(bst_root)
-print("Inorder Traversel":)
+print("Inorder Traversal:")
 inorder(bst_root)
 
 mini=get_min(bst_root)
@@ -89,4 +122,17 @@ maxim=get_max(bst_root)
 print(end="\n")
 print("The minimum element in the bst is",mini)
 print("The maximum element in the bst is",maxim)
+
+
+bst_root=del_from_bst(bst_root,50)
+level_order(bst_root)
+print("Inorder Traversal:")
+inorder(bst_root)
+print("\n")
+
+""""
+Time complexity is o(h) for deletion because the deletion 
+either calls left or right subtree and deletes when the key 
+is found . worst case is o(n) for skewed bst
+"""
 
