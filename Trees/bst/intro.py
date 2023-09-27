@@ -1,3 +1,4 @@
+from collections import deque
 class Node:
     def __init__(self,data):
         self.data=data
@@ -29,14 +30,36 @@ def input_dta():
 
     return root 
 
+def level_order(root):
 
-def print_tree(root):
+    q=deque()
+    q.append(root)
+    
+    if root is None:
+        return 
+
+    while q:
+        levels=[]
+        for i in range(len(q)):
+            node=q.popleft()
+            if node:
+                levels.append(node.data)
+                q.append(node.left)
+                q.append(node.right)
+        if levels:
+            print(levels)
+    
+    
+
+                
+
+def inorder(root):
     if root is None:
         return 
     else:
-        print_tree(root.left)
-        print(root.data)
-        print_tree(root.right)
+        inorder(root.left)
+        print(root.data,end=" ")
+        inorder(root.right)
 
 def get_min(root):
     if root is None:
@@ -57,10 +80,13 @@ def get_max(root):
     return root.data
 
 bst_root=input_dta()
-print_tree(bst_root)
+level_order(bst_root)
+print("Inorder Traversel":)
+inorder(bst_root)
 
 mini=get_min(bst_root)
 maxim=get_max(bst_root)
+print(end="\n")
 print("The minimum element in the bst is",mini)
 print("The maximum element in the bst is",maxim)
 
