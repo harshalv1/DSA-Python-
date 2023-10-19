@@ -40,4 +40,4 @@ heapsort(arr,n)
 print(arr[1:])
     
 
-    
+#time complexity is o(nlogn) 
