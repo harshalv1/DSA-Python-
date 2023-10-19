@@ -41,3 +41,6 @@ print(arr[1:])
     
 
 #time complexity is o(nlogn) 
+#this is bcoz we are performing two operations building the heap/heapify o(n)
+#and swapping elements and arranging them in their correct positions o(logn)
+#hence o(nlogn)
