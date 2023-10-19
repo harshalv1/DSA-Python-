@@ -21,7 +21,7 @@ minheap.put(3)
 
 print("Top element of min-priority queue",minheap.queue[0])
 print("size of min-priority queue",minheap.qsize())
-minheap.get() #get is used to get the element but it pops the element from the data structure 
+minheap.get() #get is used to get the element at the top but it pops the element from the data structure 
 print("size after popping min-priority queue",minheap.qsize())
 print(minheap.empty())
 
